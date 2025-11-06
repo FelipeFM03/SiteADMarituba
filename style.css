@@ -1,0 +1,422 @@
+/* --- ESTILOS GLOBAIS E VARIÁVEIS DE COR --- */
+/*
+  'root' permite-nos definir variáveis de cor. 
+  Assim, se quisermos mudar a cor principal, só mudamos num lugar!
+*/
+:root {
+    --cor-primaria: #003366;  /* Azul escuro (usado em títulos e no header) */
+    --cor-secundaria: #327eca; /* Dourado/Amarelo (usado em detalhes e botões) */
+    --cor-fundo: #f4f4f4;       /* Cinza claro (para o fundo das secções) */
+    --cor-texto: #333;         /* Cinza escuro (para texto principal) */
+    --cor-branca: #ffffff;
+}
+
+/* Reset básico para garantir consistência entre navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Faz com que padding não afete a largura total */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+}
+
+html {
+    scroll-behavior: smooth; /* Faz a rolagem ser suave ao clicar nos links do menu */
+}
+
+/* --- 1. CABEÇALHO (Header) e Menu --- */
+.cabecalho {
+    background-color: var(--cor-branca);
+    padding: 1rem 2rem;
+    display: flex; /* Alinha o logo e o menu lado a lado */
+    justify-content: space-between; /* Espaço entre o logo e o menu */
+    align-items: center; /* Centraliza verticalmente */
+    position: fixed; /* Fica fixo no topo ao rolar */
+    width: 100%;
+    top: 0;
+    z-index: 1000; /* Garante que o cabeçalho fica por cima de tudo */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.logo {
+    font-size: 1.7rem;
+    font-weight: bold;
+    color: var(--cor-primaria);
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+}
+
+.menu ul li {
+    margin-left: 1.5rem;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: var(--cor-primaria);
+    font-weight: bold;
+    transition: color 0.3s; /* Efeito suave ao passar o rato */
+}
+
+.menu ul li a:hover {
+    color: var(--cor-secundaria);
+}
+
+/* Esconde o botão hambúrguer em ecrãs grandes */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--cor-primaria);
+    cursor: pointer;
+}
+
+/* --- 2. SECÇÃO PRINCIPAL (Hero) --- */
+/* (Temos que dar um padding-top igual à altura do header para o conteúdo não ficar escondido) */
+.hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.850), rgb(0, 0, 0, 0.850)), url('imagens/baner-minimalista.jpg'); /* 📌 Trocar 'hero-background.jpg' por uma foto real */
+    background-size: cover;
+    background-position: center;
+    color: var(--cor-branca);
+    text-align: center;
+    padding: 8rem 2rem 4rem; /* Padding extra no topo */
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px; /* Altura aproximada do header, para não sobrepor */
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.btn-destaque {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-branca);
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-destaque:hover {
+    background-color: #2a6aaa; /* Tom mais escuro do azul */
+}
+
+/* --- ESTILOS GERAIS DAS SECÇÕES --- */
+.seccao {
+    padding: 3rem 2rem;
+    text-align: center;
+}
+
+/* Fundo alternado para melhor visualização */
+.seccao:nth-child(odd) { /* Secções ímpares (Missões, Contribuição) */
+    background-color: var(--cor-branca);
+}
+
+.seccao h2 {
+    font-size: 2rem;
+    color: var(--cor-primaria);
+    margin-bottom: 1.5rem;
+}
+
+/* --- 3. SECÇÃO MISSÕES --- */
+.missoes-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem; /* Espaço entre os cards */
+    flex-wrap: wrap; /* Permite que os cards quebrem para a linha de baixo em ecrãs pequenos */
+}
+
+.missao-card {
+    background-color: var(--cor-fundo);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    flex-basis: 400px; /* Largura base de cada card */
+}
+
+.icone-missao {
+    font-size: 3rem;
+    color: var(--cor-secundaria);
+    margin-bottom: 1rem;
+}
+
+/* --- 4. SECÇÃO TEMPLOS --- */
+.templos-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.templo-card {
+    background-color: var(--cor-branca);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    overflow: hidden; /* Garante que a imagem não ultrapassa o card */
+    flex-basis: 350px;
+}
+
+.templo-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Garante que a imagem cobre a área sem distorcer */
+}
+
+.templo-card h3 {
+    color: var(--cor-primaria);
+    margin: 1rem 0;
+}
+
+.templo-card p {
+    padding: 0 1rem;
+}
+
+.btn-mapa {
+    display: inline-block;
+    background-color: var(--cor-primaria);
+    color: var(--cor-branca);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    margin: 1rem 0;
+    transition: background-color 0.3s;
+}
+
+.btn-mapa:hover {
+    background-color: #004a80;
+}
+
+/* --- 5. SECÇÃO CONTRIBUIÇÃO --- */
+.contribuicao-opcoes {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.opcao-card {
+    background-color: var(--cor-fundo); /* Fundo um pouco diferente */
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px dashed var(--cor-secundaria);
+    flex-basis: 400px;
+}
+
+.icone-contribuicao {
+    font-size: 3rem;
+    color: var(--cor-primaria);
+    margin-bottom: 1rem;
+}
+
+.nota-importante {
+    font-weight: bold;
+    color: #c00;
+    margin-top: 0.5rem;
+}
+
+/* --- 6. SECÇÃO CONTACTO --- */
+.contacto-info p {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+}
+
+.redes-sociais {
+    margin-top: 1.5rem;
+}
+
+.redes-sociais a {
+    font-size: 1.8rem;
+    color: var(--cor-primaria);
+    margin: 0 0.5rem;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.redes-sociais a:hover {
+    color: var(--cor-secundaria);
+}
+
+/* --- 7. RODAPÉ (Footer) --- */
+.rodape {
+    background-color: var(--cor-primaria);
+    color: var(--cor-branca);
+    text-align: center;
+    padding: 1.5rem;
+}
+
+/* Estilo para o parágrafo da versão */
+.rodape .versao {
+    font-size: 0.8rem; /* Fonte um pouco mais pequena */
+    color: #ccc; /* Um cinza claro (para não se destacar tanto) */
+    margin-top: 1rem; /* Um pequeno espaço acima dele */
+}
+
+/* --- RESPONSIVIDADE (Media Queries) --- */
+/*
+  Esta é a parte MÁGICA do CSS.
+  Dizemos ao navegador: "Se o ecrã for MENOR que 768px (tablets e telemóveis)..."
+*/
+@media (max-width: 768px) {
+    /* 1. Ajustes no Cabeçalho e Menu */
+    .menu {
+        display: none; /* Esconde o menu normal */
+        flex-direction: column; /* Menu fica vertical */
+        background-color: var(--cor-branca);
+        position: absolute; /* Sai do fluxo normal */
+        top: 60px; /* Logo abaixo do header */
+        left: 0;
+        width: 100%;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    
+    /* Quando o menu tiver a classe 'ativo', ele aparece */
+    .menu.ativo {
+        display: flex;
+    }
+    
+    .menu ul {
+        flex-direction: column; /* Links em pilha */
+        width: 100%;
+    }
+
+    .menu ul li {
+        margin: 0;
+        text-align: center;
+    }
+
+    .menu ul li a {
+        display: block; /* Faz o link ocupar a largura toda */
+        padding: 1rem;
+        border-bottom: 1px solid var(--cor-fundo);
+    }
+
+    /* Mostra o botão hambúrguer */
+    .menu-toggle {
+        display: block;
+    }
+
+    /* 2. Ajustes nas Secções */
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .missoes-container,
+    .templos-container,
+    .contribuicao-opcoes {
+        flex-direction: column; /* Empilha os cards */
+        gap: 1.5rem;
+    }
+}
+/* --- 8. ESTILOS DAS PÁGINAS DE DETALHE (Missões, Templos) --- */
+
+/* Define o layout geral da página de detalhe */
+.seccao-detalhe {
+    padding: 3rem 2rem;
+    padding-top: 8rem; /* 📌 Compensa o cabeçalho fixo */
+    max-width: 1000px; /* Limita a largura do conteúdo para melhor leitura */
+    margin: 0 auto; /* Centraliza a secção na página */
+    background-color: var(--cor-branca);
+    min-height: 80vh; /* Garante que a página tenha uma altura mínima */
+}
+
+/* Alinha o texto da descrição */
+.seccao-detalhe p {
+    text-align: left; /* Melhora a legibilidade de textos longos */
+    margin-bottom: 2rem;
+    line-height: 1.7;
+}
+
+/* Alinha os títulos das sub-secções (Ex: Missão Contra Fome) */
+.seccao-detalhe h2 {
+    text-align: left;
+    display: flex; /* Para alinhar o ícone com o texto */
+    align-items: center;
+    gap: 0.5rem; /* Espaço entre o ícone e o título */
+}
+
+/* Uma grelha simples para a galeria de fotos */
+.galeria-container {
+    display: grid;
+    /* Cria colunas automáticas: 
+      - Tenta criar colunas de no mínimo 250px.
+      - '1fr' diz para distribuir o espaço que sobrar.
+      - 'auto-fit' faz com que se ajuste (ex: 1 coluna em telemóvel, 3 em PC)
+    */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.galeria-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Garante que a imagem cobre o espaço sem distorcer */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.galeria-item img:hover {
+    transform: scale(1.03); /* Efeito de zoom suave */
+}
+
+/* Divisor simples entre as secções de missão */
+.divisor {
+    border: 0;
+    height: 1px;
+    background-color: var(--cor-fundo);
+    margin: 3rem 0;
+}
+
+/* Botão para voltar (página de detalhe) */
+.btn-voltar {
+    display: inline-block;
+    background-color: var(--cor-primaria);
+    color: var(--cor-branca);
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-voltar:hover {
+    background-color: #004a80;
+}
+
+/* Botão "Saber Mais" (para os cards da Home Page) */
+.btn-detalhe {
+    display: inline-block;
+    background-color: var(--cor-secundaria);
+    color: var(--cor-branca);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-detalhe:hover {
+    background-color: #2a6aaa; /* O azul mais escuro */
+}
+
+/* Destaca o link do menu da página ativa */
+.menu ul li a.link-ativo {
+    color: var(--cor-secundaria);
+    border-bottom: 2px solid var(--cor-secundaria);
+}
