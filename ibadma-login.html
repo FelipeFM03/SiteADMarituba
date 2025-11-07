@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - IBADMA - AD Marituba</title>
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="imagens/ad-marituba-favicon.png" type="image/png">
+</head>
+<body>
+
+    <header class="cabecalho">
+        <div class="logo">AD Marituba</div>
+        <button class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></button>
+        <nav class="menu" id="menu">
+            <ul>
+                <li><a href="index.html">Início</a></li> 
+                <li><a href="missoes.html">Missões</a></li> 
+                <li><a href="index.html#templos">Templos</a></li>
+                <li><a href="ibadma.html" class="link-ativo">IBADMA</a></li> 
+                <li><a href="index.html#contribuicao">Contribuição</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio" class="seccao login-page-container">
+        
+        <div class="login-box">
+            <i class="fas fa-lock login-icon"></i>
+            <h3>Acesso do Aluno</h3>
+            <p>Por favor, insira os seus dados para aceder aos módulos.</p>
+            
+            <form class="login-form">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" placeholder="exemplo@email.com" required>
+                
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" placeholder="******" required>
+                
+                <a href="ibadma-modulos.html" class="btn-login">
+                    Entrar
+                </a>
+            </form>
+            
+            <p class="login-register-link">
+                Ainda não tens conta? <a href="ibadma-cadastro.html">Clica aqui para te registares</a>
+            </p>
+        </div>
+
+    </section>
+
+
+    <footer class="rodape">
+        <p>© 2025 Assembleia de Deus Ministério Marituba. Todos os direitos reservados.</p>
+        <p>© Desenvolvido por Felipe Monteiro . Todos os direitos reservados.</p>
+        <p class="versao">Versão 1.1.0</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

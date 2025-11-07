@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assembleia de Deus Ministério Marituba</title>
-    <link rel="icon" href="imagens\ad-marituba-favicon.png" type="image/png">
+    <link rel="icon" href="imagens/ad-marituba-favicon.png" type="image/png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -19,14 +19,16 @@
         </button>
 
         <nav class="menu" id="menu">
-            <ul>
-                <li><a href="#inicio">Início</a></li>
-                <li><a href="#missoes">Missões</a></li>
-                <li><a href="#templos">Templos</a></li>
-                <li><a href="#contribuicao">Contribuição</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
+    <ul>
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="missoes.html">Missões</a></li>
+        <li><a href="#templos">Templos</a></li>
+        
+        <li><a href="ibadma.html">IBADMA</a></li>
+        <li><a href="#contribuicao">Contribuição</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+    </ul>
+</nav>
     </header>
 
     <section id="inicio" class="hero">
@@ -63,18 +65,32 @@
     <section id="templos" class="seccao templos">
         <h2>Nossos Templos</h2>
         <p>Visite-nos. Temos um templo perto de si!</p>
-        <div class="templos-container">
-            <div class="templo-card">
-                <img src="imagens\FAIXADA-TC-MARITUBA.jpeg" alt="Foto do Templo Sede"> <h3>Templo Central</h3>
-                <p>R.da Assembléia 1 de Maio,15, Marituba-PA</p>
-                <a href="https://maps.app.goo.gl/1GzHSwu1Kn21dEL39" target="_blank" class="btn-mapa"><i class="fas fa-map-marker-alt"></i> Ver no Mapa</a>
-            </div>
-            <div class="templo-card">
-                <img src="imagens\FAIXADA-AD-BELLA-CITTÁ.jpeg" alt="Foto do Congregação Alfa"> <h3>Templo AD. Bella Cittá</h3>
-                <p>Bairro Parque Verde, Marituba - PA</p>
-                <a href="https://maps.app.goo.gl/U17EJBuWFhTfYAUw9" target="_blank" class="btn-mapa"><i class="fas fa-map-marker-alt"></i> Ver no Mapa</a>
-            </div>
+
+        <div class="carousel-viewport">
+            <div class="carousel-track" id="carousel-track">
+                </div>
         </div>
+
+        <div class="carousel-nav">
+            <button id="carousel-prev" class="btn-nav" aria-label="Templo Anterior">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button id="carousel-next" class="btn-nav" aria-label="Próximo Templo">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </section>
+    </div>
+    </section>
+
+    <section id="ibadma-home" class="seccao ibadma-home">
+        <i class="fas fa-graduation-cap icone-seccao-ibadma"></i>
+        <h2>Conheça o Nosso Instituto Bíblico</h2>
+        <p>Aprofunde o seu conhecimento na Palavra de Deus. O IBADMA oferece uma formação teológica completa para todos os membros.</p>
+        
+        <a href="ibadma.html" class="btn-destaque">
+            Saber Mais e Aceder ao Curso
+        </a>
     </section>
 
     <section id="contribuicao" class="seccao contribuicao">
@@ -114,7 +130,7 @@
         <p>© 2025 Assembleia de Deus Ministério Marituba. Todos os direitos reservados.</p>
         <p>© Desenvolvido por Felipe Monteiro . Todos os direitos reservados.</p>
         
-        <p class="versao">Versão 1.0.0</p>
+        <p class="versao">Versão 1.1.0</p>
     </footer>
     
     <script src="script.js"></script>

@@ -154,52 +154,6 @@ html {
     margin-bottom: 1rem;
 }
 
-/* --- 4. SECÇÃO TEMPLOS --- */
-.templos-container {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-}
-
-.templo-card {
-    background-color: var(--cor-branca);
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    overflow: hidden; /* Garante que a imagem não ultrapassa o card */
-    flex-basis: 350px;
-}
-
-.templo-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover; /* Garante que a imagem cobre a área sem distorcer */
-}
-
-.templo-card h3 {
-    color: var(--cor-primaria);
-    margin: 1rem 0;
-}
-
-.templo-card p {
-    padding: 0 1rem;
-}
-
-.btn-mapa {
-    display: inline-block;
-    background-color: var(--cor-primaria);
-    color: var(--cor-branca);
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    margin: 1rem 0;
-    transition: background-color 0.3s;
-}
-
-.btn-mapa:hover {
-    background-color: #004a80;
-}
-
 /* --- 5. SECÇÃO CONTRIBUIÇÃO --- */
 .contribuicao-opcoes {
     display: flex;
@@ -314,11 +268,11 @@ html {
         font-size: 2rem;
     }
 
-    .missoes-container,
-    .templos-container,
-    .contribuicao-opcoes {
-        flex-direction: column; /* Empilha os cards */
-        gap: 1.5rem;
+    /* ⬇️ CORRIGIDO (removemos o .templo-card daqui) ⬇️ */
+    .missao-card,
+    .opcao-card {
+     flex-basis: auto; 
+     width: 100%;
     }
 }
 /* --- 8. ESTILOS DAS PÁGINAS DE DETALHE (Missões, Templos) --- */
@@ -419,4 +373,300 @@ html {
 .menu ul li a.link-ativo {
     color: var(--cor-secundaria);
     border-bottom: 2px solid var(--cor-secundaria);
+}
+
+/* --- 9. ESTILOS DO CAROUSEL DE TEMPLOS --- */
+
+/* A "Janela" visível */
+.carousel-viewport {
+    width: 100%;
+    /* Garante que os cards que saem da janela ficam invisíveis */
+    overflow: hidden; 
+    position: relative;
+    /* Damos uma altura fixa para a janela não "saltar" */
+    min-height: 450px; 
+    margin-top: 2rem;
+}
+
+/* O "Track" que segura e move todos os cards */
+.carousel-track {
+    display: flex; /* Alinha todos os 110 cards em linha */
+    position: relative;
+    left: 0; /* Posição inicial */
+    
+    /* A animação de transição quando movemos o track */
+    transition: transform 0.5s ease-out; 
+}
+
+/* MODIFICAÇÃO IMPORTANTE: 
+  O .templo-card original (que estava no CSS global) vai ser 
+  substituído por este. 
+*/
+.templos .templo-card {
+    background-color: var(--cor-branca);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+
+    /* Esta é a chave!
+      flex: 0 0 300px; 
+      Significa: Não crescer (0), Não encolher (0), Largura base de 300px (300px).
+    */
+    flex: 0 0 300px; 
+    margin: 0 1rem; /* Espaçamento entre os cards */
+    
+    /* ESTE É O TEU PEDIDO: 
+      Por padrão, todos os cards estão "apagados"
+    */
+    opacity: 0.4;
+    transform: scale(0.85); /* E um pouco mais pequenos */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* ESTE É O CARD CENTRAL (ATIVO):
+  A classe "ativo" será adicionada pelo JavaScript
+*/
+.templos .templo-card.ativo {
+    opacity: 1;
+    transform: scale(1); /* Tamanho normal e opaco */
+    box-shadow: 0 8px 20px rgba(0, 51, 102, 0.2); /* Sombra mais forte */
+}
+
+/* ESTE É O CARD DO LADO (SEMI-ATIVO):
+  A classe "lado" será adicionada pelo JavaScript
+*/
+.templos .templo-card.lado {
+    opacity: 0.7; /* Um pouco mais visível que os outros */
+    transform: scale(0.9);
+}
+
+/* Ajusta as imagens e botões dentro do card (como já tínhamos) */
+.templos .templo-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.templos .templo-card h3 {
+    color: var(--cor-primaria);
+    margin: 1rem 0;
+}
+.templos .templo-card p {
+    padding: 0 1rem;
+}
+.templos .btn-mapa {
+    margin: 1rem 0;
+}
+
+/* Estilo dos botões de navegação */
+.carousel-nav {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.btn-nav {
+    background-color: var(--cor-primaria);
+    color: var(--cor-branca);
+    border: none;
+    border-radius: 50%; /* Botões redondos */
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin: 0 0.5rem;
+    transition: background-color 0.3s;
+}
+
+.btn-nav:hover {
+    background-color: var(--cor-secundaria);
+}
+
+/* --- 9. ESTILOS DO CAROUSEL DE TEMPLOS --- */
+/* ... (todo o teu código do carousel) ... */
+
+/* Esta classe remove a animação de transição 
+   durante o "salto" instantâneo do loop infinito 
+*/
+.carousel-track.no-transition {
+    transition: none !important;
+}
+
+/* --- 10. ESTILOS PÁGINA IBADMA (CURSOS) --- */
+
+.modulos-container {
+    /* O container vai ser uma pilha vertical */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Espaço entre os cards dos módulos */
+    margin-top: 2rem;
+}
+
+.modulo-card {
+    background-color: var(--cor-fundo); /* Um cinza claro de fundo */
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    text-align: left; /* Alinha o texto do card à esquerda */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    
+    /* Um pequeno detalhe visual com a cor secundária */
+    border-left: 5px solid var(--cor-secundaria); 
+    transition: transform 0.3s;
+}
+
+.modulo-card:hover {
+    transform: translateY(-5px); /* Efeito de "levantar" */
+}
+
+.modulo-card h3 {
+    color: var(--cor-primaria);
+    margin-bottom: 0.5rem;
+}
+
+/* Estilo para o botão "Ver Aulas" */
+.btn-modulo {
+    display: inline-block;
+    background-color: var(--cor-secundaria);
+    color: var(--cor-branca);
+    padding: 0.6rem 1.2rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 1rem;
+    transition: background-color 0.3s;
+}
+
+.btn-modulo:hover {
+    background-color: #2a6aaa; /* Tom mais escuro do azul */
+}
+
+/* --- 11. ESTILOS PÁGINA LOGIN (IBADMA) --- */
+
+.login-page-container {
+    /* Garante que a secção ocupa pelo menos 
+       a altura do ecrã (menos o header e footer) */
+    min-height: 80vh; 
+    padding-top: 8rem; /* Compensa o header fixo */
+    background-color: var(--cor-fundo); /* Fundo cinza claro */
+}
+
+.login-box {
+    max-width: 450px; /* Largura máxima da caixa de login */
+    margin: 0 auto; /* Centraliza a caixa na horizontal */
+    background-color: var(--cor-branca);
+    padding: 2rem 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.login-icon {
+    font-size: 2.5rem;
+    color: var(--cor-secundaria);
+    margin-bottom: 1rem;
+}
+
+.login-box h3 {
+    color: var(--cor-primaria);
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+}
+
+.login-box p {
+    margin-bottom: 1.5rem;
+    color: var(--cor-texto);
+}
+
+/* Estilos do formulário */
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form label {
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+    color: var(--cor-primaria);
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"],
+.login-form input[type="text"] {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+/* O nosso link <a> estilizado como botão */
+.btn-login {
+    display: block; /* Ocupa 100% da largura */
+    width: 100%;
+    text-decoration: none;
+    background-color: var(--cor-secundaria);
+    color: var(--cor-branca);
+    padding: 0.9rem;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border: none;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s;
+}
+
+.btn-login:hover {
+    background-color: #2a6aaa; /* Tom mais escuro do azul */
+}
+
+.login-register-link {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+}
+
+/* --- 12. ESTILOS SECÇÃO HOME IBADMA --- */
+
+/* Esta é a secção principal */
+.ibadma-home {
+    background-color: var(--cor-primaria); /* 🎨 O fundo azul escuro */
+    color: var(--cor-branca); /* 🎨 O texto principal a branco */
+    
+    /* Vamos limitar a largura do texto para melhor leitura */
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* O título H2 dentro desta secção */
+.ibadma-home h2 {
+    color: var(--cor-primaria); /* Título também a branco */
+}
+
+/* O parágrafo dentro desta secção */
+.ibadma-home p {
+    color: var(--cor-texto); /* Um branco ligeiramente mais suave */
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+/* O ícone de "chapéu de formatura" */
+.icone-seccao-ibadma {
+    font-size: 3rem;
+    color: var(--cor-secundaria); /* 🎨 O ícone na cor de destaque (azul/dourado) */
+    margin-bottom: 1rem;
+}
+
+/* O botão '.btn-destaque' já tem o estilo (azul/dourado) 
+   que fica perfeito aqui, mas podemos garantir 
+   que ele se destaca ainda mais no fundo azul */
+.ibadma-home .btn-destaque {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-branca);
+    transform: scale(1.05); /* Um pouco maior para chamar a atenção */
+}
+
+.ibadma-home .btn-destaque:hover {
+    background-color: #2a6aaa; /* (O tom mais escuro que já usávamos) */
+    transform: scale(1.1); /* Efeito de zoom maior */
 }
